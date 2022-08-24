@@ -1,0 +1,25 @@
+<div>
+<!-- your widget template -->
+  {{data.uname}}
+  
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email ID</th>
+    </tr>
+  </thead>
+    
+    <tbody>
+    <tr ng-repeat="a in data.table.list">
+      <th scope="row">{{a.index}}</th>
+      <td>{{a.userId}}</td>
+      <td>{{a.name}}</td>
+      <td>{{a.email}}</td>
+      <td><button type="button" class="btn btn-danger" name='getNameButton' ng-click='showName(a.userId)'>Change Name</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

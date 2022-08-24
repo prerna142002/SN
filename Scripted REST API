@@ -1,0 +1,19 @@
+(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+    // implement resource here
+	
+// 	 Fetching the value of sysId from Request Body which is sent by the consumer.
+	var sysId = request.pathParams.sysid;
+	var gr = new GlideRecord('incident');
+	gr.addQuery('sys_id',sysId);
+	gr.query();
+	
+// 	Sending the response
+	if(gr.next()){
+		var body = {};
+		body.number = gr.number;
+		body.short_description = gr.short_description;
+		response.setBody(body);
+	}
+		
+})(request, response);

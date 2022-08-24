@@ -1,0 +1,41 @@
+(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+	data.uname = gs.getUserDisplayName();
+	data.table = {'list':[]};
+	
+	data.answer = '';
+	if(input){
+		console.log('The name from the server is: '+input.answer);
+		var grUserUpdate = new GlideRecord('sys_user');
+		grUserUpdate.query('user_name',input.answer);
+		grUserUpdate.query();
+		while(grUserUpdate.next()){
+			grUserUpdate.setValue('last_name',input.answer);
+			grUserUpdate.update();
+			gs.addInfoMessage("Edited");
+		}
+		
+	}
+	
+	var grUser = new GlideRecord('sys_user');
+	grUser.addEncodedQuery('company=187d13f03710200044e0bfc8bcbe5df2');
+	grUser.orderBy('user_name');
+	grUser.setLimit(10);
+	grUser.query();
+	var i =1;
+	while(grUser.next()){
+		var obj = {};
+		
+		// Always try to use getValue() -> this will not return the object but the value only.
+		obj.index = i;
+		obj.userId = grUser.getValue('user_name');
+		obj.name = grUser.getValue('first_name');
+		obj.email = grUser.getValue('email');
+		data.table.list.push(obj);
+		i=i+1;
+	}
+	//gs.addInfoMessage(JSON.stringify(data.table.list,null,10));
+	//gs.addInfoMessage("All values displayed");
+})();

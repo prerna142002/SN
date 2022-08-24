@@ -1,0 +1,9 @@
+api.controller=function($scope) {
+  /* widget controller */
+  var c = this;
+	$scope.showName = function(name){
+		console.log('namw is '+name);
+		c.data.answer = name;
+		c.server.update();
+	}
+};

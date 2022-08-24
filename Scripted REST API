@@ -1,3 +1,5 @@
+Incident REST API
+
 (function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
 
     // implement resource here
